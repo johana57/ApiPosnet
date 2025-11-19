@@ -10,7 +10,6 @@ class Card {
        private float  $limit,
        private Client $client
     ) {
-        $this->brand  = strtoupper($brand);
     }
 
     public function getBrand(): string
