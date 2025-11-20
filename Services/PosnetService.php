@@ -14,12 +14,12 @@ final class PosnetService {
         int $installments): Ticket
     {
         if ($installments < 1 || $installments > 6) {
-            throw new PaymentException("El límite de cuotas es 6. ");
+            throw new PaymentException("El límite de cuotas es 6. ", 422);
         }
 
         $card = $this->cardRepository->findByNumber($cardNumber);
         if (!$card) {
-            throw new PaymentException("La tarjeta no existe.");
+            throw new PaymentException("La tarjeta no existe.", 422);
         }
 
         $interestPercent = ($installments - 1) * 0.03;
@@ -27,12 +27,10 @@ final class PosnetService {
         $perInstallment = $total / $installments;
 
         if ($total > $card->getLimit()) {
-            throw new PaymentException("Límite de tarjeta insuficiente.");
+            throw new PaymentException("Límite de tarjeta insuficiente.", 422);
         }
 
-        // var_dump($total);
         $newLimit = $card->decreaseLimit($total);
-        // var_dump($newLimit); exit;
 
         return new Ticket(
             $card->getClient()->getFullName(),

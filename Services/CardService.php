@@ -13,11 +13,11 @@ final class CardService {
 
         $brand = strtoupper($data["brand"]);
         if (!in_array($brand, ["VISA", "AMEX"])) {
-            throw new ValidationException("Disculpe, solo trabajamos con tarjetas VISA o AMEX.");
+            throw new ValidationException("Disculpe, solo trabajamos con tarjetas VISA o AMEX.", 422);
         }
 
         if (!preg_match("/^[0-9]{8}$/", $data["number"])) {
-            throw new ValidationException("El número de la tarjeta debe tener 8 dígitos.");
+            throw new ValidationException("El número de la tarjeta debe tener 8 dígitos.", 422);
         }
 
         $client = new Client(

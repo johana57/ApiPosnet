@@ -13,5 +13,4 @@ $cardService    = new CardService($cardRepository);
 $posnetService  = new PosnetService($cardRepository);
 
 $controller = new PaymentController($cardService, $posnetService);
-
 $controller->handleRequest();
