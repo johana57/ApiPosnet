@@ -36,7 +36,8 @@ class Card {
         return $this->client;
     }
 
-    public function decreaseLimit(float $amount): void {
+    public function decreaseLimit(float $amount): float {
         $this->limit -= $amount;
+        return $this->limit;
     }
 }

@@ -30,12 +30,15 @@ final class PosnetService {
             throw new PaymentException("Límite de tarjeta insuficiente.");
         }
 
-        $card->decreaseLimit($total);
+        // var_dump($total);
+        $newLimit = $card->decreaseLimit($total);
+        // var_dump($newLimit); exit;
 
         return new Ticket(
             $card->getClient()->getFullName(),
             round($total, 2),
-            round($perInstallment, 2)
+            round($perInstallment, 2),
+            $newLimit
         );
     }
 }

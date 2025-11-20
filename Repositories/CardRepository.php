@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-final class CardRepository {
+class CardRepository {
 
     public function save(Card $card): void {
         $_SESSION['cards'][$card->getNumber()] = $card;

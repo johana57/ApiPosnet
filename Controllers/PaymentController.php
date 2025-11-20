@@ -74,7 +74,8 @@ final class PaymentController
             "ticket" => [
                 "client"       => $ticket->clientName,
                 "total"        => $ticket->totalAmount,
-                "installment"  => $ticket->installmentAmount
+                "installment"  => $ticket->installmentAmount,
+                "newLimit"        => $ticket->limit
             ]
         ];
     }

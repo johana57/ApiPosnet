@@ -6,7 +6,8 @@ final class Ticket {
     public function __construct(
         public string $clientName,
         public float $totalAmount,
-        public float $installmentAmount) {
+        public float $installmentAmount,
+        public float $limit) {
        
     }
 }
